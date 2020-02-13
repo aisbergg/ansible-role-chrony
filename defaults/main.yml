@@ -1,0 +1,16 @@
+---
+chrony_service_enabled: true
+chrony_service_state: started
+
+chrony_timezone: Europe/Berlin
+chrony_uninstall_other_ntp_services: true
+
+chrony_config_server:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+  - 2.pool.ntp.org
+  - 3.pool.ntp.org
+chrony_config_pool: []
+chrony_config_makestep: 1.0 3
+chrony_config_rtcsync: true
+chrony_config_extra_options: {}

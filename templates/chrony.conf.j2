@@ -1,0 +1,33 @@
+{{ ansible_managed | comment }}
+
+# list of NTP servers to be used as a time source
+{% for server in chrony_config_server %}
+server {{ server }} iburst
+{% endfor %}
+
+# list of NTP server pools
+{% for pool in chrony_config_pool %}
+pool {{ server }} iburst
+{% endfor %}
+
+# file containing the keys for NTP authentication
+keyfile {{ chrony_config_keyfile }}
+
+# file to record the rate at which the system clock gains/loses time
+driftfile {{ chrony_config_driftfile }}
+
+# file to record the rate at which the system clock gains/loses time
+driftfile {{ chrony_config_driftfile }}
+
+# step the system clock if the adjustment is larger than a threshold value
+makestep {{ chrony_config_makestep }}
+
+{% if chrony_config_rtcsync %}
+# enable kernel synchronization of the real-time clock (RTC)
+rtcsync
+{% endif %}
+
+# Extra Chrony options
+{% for k, v in chrony_config_extra_options.items() %}
+{{ k }} {{ v }}
+{% endfor %}

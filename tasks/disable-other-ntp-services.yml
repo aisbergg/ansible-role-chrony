@@ -1,0 +1,52 @@
+---
+
+- name: Check if ntpd service exists
+  command: "systemctl status {{ ntpd_service_name }}.service"
+  failed_when: false
+  changed_when: false
+  register: ntpd_service_status
+
+- name: Stop ntpd service
+  systemd:
+    name: "{{ ntpd_service_name }}"
+    state: stopped
+    masked: true
+  when: ntpd_service_status.rc != 4
+
+- name: Remove ntpd package
+  package:
+    name: "{{ ntpd_package_name }}"
+    state: absent
+  when: chrony_uninstall_other_ntp_services
+
+- name: Check if timesyncd service exists
+  command: "systemctl status {{ timesyncd_service_name }}.service"
+  failed_when: false
+  changed_when: false
+  register: timesyncd_service_status
+
+- name: Stop timesyncd service
+  systemd:
+    name: systemd-timesyncd
+    state: stopped
+    masked: true
+  when: timesyncd_service_status.rc != 4
+
+- name: Check if openntpd service exists
+  command: "systemctl status {{ openntpd_service_name }}.service"
+  failed_when: false
+  changed_when: false
+  register: openntpd_service_status
+
+- name: Stop openntpd service
+  systemd:
+    name: openntpd
+    state: stopped
+    masked: true
+  when: openntpd_service_status.rc != 4
+
+- name: Remove openntpd package
+  package:
+    name: "{{ openntpd_package_name }}"
+    state: absent
+  when: chrony_uninstall_other_ntp_services
