@@ -1,5 +1,6 @@
 ---
 - name: Include OS-specific variables
+  tags: [chrony, ntp]
   include_vars: "{{ item }}"
   with_first_found:
     - files:
@@ -7,33 +8,8 @@
         - "{{ ansible_os_family }}.yml"
       skip: true
 
-- name: Disable other NTP services
-  include_tasks: disable-other-ntp-services.yml
-  when: chrony_service_enabled or chrony_service_state in ['started', 'restarted', 'reloaded']
+- import_tasks: install.yml
+  tags: [chrony, ntp]
 
-- name: Install Chrony
-  package:
-    name: chrony
-
-- name: Configure Chrony
-  template:
-    src: chrony.conf.j2
-    dest: "{{ chrony_config_location }}"
-    owner: root
-    group: root
-    mode: 0644
-    lstrip_blocks: true
-  notify:
-    - restart chrony
-
-- name: Set timezone
-  timezone:
-    name: "{{ chrony_timezone }}"
-  notify:
-    - restart chrony
-
-- name: Manage Chrony service
-  service:
-    name: "{{ chrony_service_name }}"
-    state: "{{ chrony_service_state }}"
-    enabled: "{{ chrony_service_enabled }}"
+- import_tasks: configure.yml
+  tags: [chrony, ntp]
