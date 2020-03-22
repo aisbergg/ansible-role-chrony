@@ -10,4 +10,4 @@ ntpd_package_name: ntp
 openntpd_service_name: openntpd
 openntpd_package_name: openntpd
 
-timesyncd_service_name: systemd-timesynced
+timesyncd_service_name: systemd-timesyncd
