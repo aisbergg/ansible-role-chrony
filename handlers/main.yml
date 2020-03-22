@@ -3,3 +3,5 @@
   service:
     name: "{{ chrony_service_name }}"
     state: restarted
+  when: chrony_service_enabled or
+        chrony_service_state in ["started", "restarted", "reloaded"]
