@@ -3,37 +3,35 @@
   service_facts:
   register: services_state
 
-- block:
+- when: __ntpd_service_name ~ '.service' in ansible_facts.services
+  block:
     - name: Stop ntpd service
       service:
-        name: "{{ ntpd_service_name }}"
+        name: "{{ __ntpd_service_name }}"
         enabled: false
         state: stopped
 
     - name: Remove ntpd package
       package:
-        name: "{{ ntpd_package_name }}"
+        name: "{{ __ntpd_package_name }}"
         state: absent
 
-  when: ntpd_service_name ~ '.service' in ansible_facts.services
-
-- block:
+- when: __openntpd_service_name ~ '.service' in ansible_facts.services
+  block:
     - name: Stop openntpd service
       service:
-        name: "{{ openntpd_service_name }}"
+        name: "{{ __openntpd_service_name }}"
         enabled: false
         state: stopped
 
     - name: Remove openntpd package
       package:
-        name: "{{ openntpd_package_name }}"
+        name: "{{ __openntpd_package_name }}"
         state: absent
-
-  when: openntpd_service_name ~ '.service' in ansible_facts.services
 
 - name: Stop timesyncd service
   service:
     name: systemd-timesyncd
     enabled: false
     state: stopped
-  when: timesyncd_service_name ~ '.service' in ansible_facts.services
+  when: __timesyncd_service_name ~ '.service' in ansible_facts.services

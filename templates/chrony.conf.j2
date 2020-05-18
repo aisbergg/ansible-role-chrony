@@ -1,3 +1,4 @@
+#jinja2: trim_blocks: "true", lstrip_blocks: "true"
 {{ ansible_managed | comment }}
 
 # list of NTP servers to be used as a time source
@@ -11,13 +12,13 @@ pool {{ server }} iburst
 {% endfor %}
 
 # file containing the keys for NTP authentication
-keyfile {{ chrony_config_keyfile }}
+keyfile {{ __chrony_config_keyfile }}
 
 # file to record the rate at which the system clock gains/loses time
-driftfile {{ chrony_config_driftfile }}
+driftfile {{ __chrony_config_driftfile }}
 
 # file to record the rate at which the system clock gains/loses time
-driftfile {{ chrony_config_driftfile }}
+driftfile {{ __chrony_config_driftfile }}
 
 # step the system clock if the adjustment is larger than a threshold value
 makestep {{ chrony_config_makestep }}

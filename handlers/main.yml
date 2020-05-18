@@ -1,7 +1,6 @@
 ---
 - name: restart chrony
   service:
-    name: "{{ chrony_service_name }}"
+    name: "{{ __chrony_service_name }}"
     state: restarted
-  when: chrony_service_enabled or
-        chrony_service_state in ["started", "restarted", "reloaded"]
+  when: chrony_service_enabled or chrony_service_state != 'stopped'

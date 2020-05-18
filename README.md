@@ -9,7 +9,7 @@ Requires Systemd to be used as the service manager.
 ## Role Variables
 
 | Variable | Default | Comments |
-|----------|------------------|----------|
+|----------|---------|----------|
 | `chrony_service_enabled` | `true` | Enable/Disable the Chrony service |
 | `chrony_service_state` | `started` | Set the service state (Possible values: `started`, `reloaded`, `restarted`, `stopped`) |
 | `chrony_timezone` | `Europe/Berlin` | Set the timezone of the system. A list of available time zones can be found here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones |

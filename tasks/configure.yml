@@ -1,17 +1,15 @@
 ---
 - name: Disable other NTP services
   include_tasks: disable-other-ntp-services.yml
-  when: chrony_service_enabled or
-        chrony_service_state in ["started", "restarted", "reloaded"]
+  when: chrony_service_enabled or chrony_service_state != 'stopped'
 
 - name: Configure Chrony
   template:
     src: chrony.conf.j2
-    dest: "{{ chrony_config_location }}"
+    dest: "{{ __chrony_config_location }}"
     owner: root
     group: root
     mode: 0644
-    lstrip_blocks: true
   notify: restart chrony
 
 - name: Set timezone
@@ -19,9 +17,3 @@
     name: "{{ chrony_timezone }}"
   when: chrony_timezone is not none
   notify: restart chrony
-
-- name: Manage Chrony service
-  service:
-    name: "{{ chrony_service_name }}"
-    state: "{{ chrony_service_state }}"
-    enabled: "{{ chrony_service_enabled }}"

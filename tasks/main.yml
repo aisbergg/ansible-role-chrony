@@ -4,12 +4,15 @@
   include_vars: "{{ item }}"
   with_first_found:
     - files:
-        - "{{ ansible_os_family }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_os_family | lower }}-{{ ansible_distribution_major_version }}.yml"
+        - "{{ ansible_os_family | lower }}.yml"
       skip: true
 
 - import_tasks: install.yml
-  tags: [chrony, ntp]
+  tags: [chrony, ntp, chrony_install]
 
 - import_tasks: configure.yml
-  tags: [chrony, ntp]
+  tags: [chrony, ntp, chrony_config]
+
+- import_tasks: service.yml
+  tags: [chrony, ntp, chrony_service]
