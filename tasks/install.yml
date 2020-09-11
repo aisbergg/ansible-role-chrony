@@ -1,5 +1,5 @@
 ---
-- name: Install Chrony
+- name: install Chrony
   package:
     name: chrony
     state: present

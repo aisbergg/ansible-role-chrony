@@ -1,5 +1,5 @@
 ---
-- name: Manage Chrony service
+- name: manage Chrony service
   service:
     name: "{{ __chrony_service_name }}"
     state: "{{ chrony_service_state }}"

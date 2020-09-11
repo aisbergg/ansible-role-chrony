@@ -1,6 +1,6 @@
 ---
-- name: Include OS-specific variables
-  tags: [chrony, ntp]
+- name: include OS-specific variables
+  tags: [chrony, ntp, always]
   include_vars: "{{ item }}"
   with_first_found:
     - files:
@@ -9,10 +9,11 @@
       skip: true
 
 - import_tasks: install.yml
-  tags: [chrony, ntp, chrony_install]
+  tags: [chrony, ntp, chrony_install, install]
 
 - import_tasks: configure.yml
-  tags: [chrony, ntp, chrony_config]
+  tags: [chrony, ntp, chrony_config, config]
 
 - import_tasks: service.yml
-  tags: [chrony, ntp, chrony_service]
+  tags: [chrony, ntp, chrony_service, service]
+
