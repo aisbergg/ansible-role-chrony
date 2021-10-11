@@ -1,6 +1,6 @@
-# Chrony (aisbergg.chrony)
+# Ansible Role: `aisbergg.chrony`
 
-This role installs and configures Chrony, an alternative NTP implementation.
+This Ansible role installs and configures Chrony, an alternative NTP implementation.
 
 ## Requirements
 
@@ -12,6 +12,7 @@ Requires Systemd to be used as the service manager.
 |----------|---------|----------|
 | `chrony_service_enabled` | `true` | Enable/Disable the Chrony service |
 | `chrony_service_state` | `started` | Set the service state (Possible values: `started`, `reloaded`, `restarted`, `stopped`) |
+| `chrony_service_restart_on_change` | `true` | Restart Chrony service on configuration changes. |
 | `chrony_timezone` | `Europe/Berlin` | Set the timezone of the system. A list of available time zones can be found here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones |
 | `chrony_uninstall_other_ntp_services` | `true` | If true, all other NTP programs present on the system will be uninstalled |
 | `chrony_config_server` | `["0.pool.ntp.org","1.pool.ntp.org","2.pool.ntp.org", "3.pool.ntp.org"]` | List of NTP servers to be used as a time source |

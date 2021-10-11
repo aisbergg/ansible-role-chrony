@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
+- [2.0.1 (2021-10-11)](#201-2021-10-11)
 - [2.0.0 (2021-10-11)](#200-2021-10-11)
 - [1.2.2 (2020-09-11)](#122-2020-09-11)
 - [1.2.1 (2020-05-28)](#121-2020-05-28)
@@ -10,6 +11,14 @@ All notable changes to this project will be documented in this file.
 - [1.0.0 (2020-02-13)](#100-2020-02-13)
 
 ---
+
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/aisbergg/ansible-role-chrony/compare/v2.0.0...v2.0.1) (2021-10-11)
+
+### Documentation
+
+- **README.md:** update readme
+
 
 <a name="2.0.0"></a>
 ## [2.0.0](https://github.com/aisbergg/ansible-role-chrony/compare/v1.2.2...v2.0.0) (2021-10-11)
