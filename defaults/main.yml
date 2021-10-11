@@ -1,6 +1,7 @@
 ---
 chrony_service_enabled: true
 chrony_service_state: started
+chrony_service_restart_on_change: true
 
 chrony_timezone: Europe/Berlin
 chrony_uninstall_other_ntp_services: true

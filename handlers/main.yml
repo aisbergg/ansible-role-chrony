@@ -1,6 +1,8 @@
 ---
 - name: restart chrony
-  service:
+  ansible.builtin.service:
     name: "{{ __chrony_service_name }}"
     state: restarted
-  when: chrony_service_enabled or chrony_service_state != 'stopped'
+  when:
+    - chrony_service_restart_on_change | bool
+    - chrony_service_state != 'stopped'

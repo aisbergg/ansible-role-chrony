@@ -1,5 +1,5 @@
 ---
 - name: install Chrony
-  package:
+  ansible.builtin.package:
     name: chrony
     state: present
