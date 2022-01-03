@@ -4,7 +4,7 @@ chrony_service_state: started
 chrony_service_restart_on_change: true
 
 chrony_timezone: Europe/Berlin
-chrony_uninstall_other_ntp_services: true
+chrony_disable_other_ntp_services: true
 
 chrony_config_server:
   - 0.pool.ntp.org

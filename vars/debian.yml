@@ -5,4 +5,3 @@ __chrony_config_keyfile: /etc/chrony/chrony.keys
 __chrony_config_driftfile: /var/lib/chrony/chrony.drift
 
 __ntpd_service_name: ntp
-__ntpd_package_name: ntp

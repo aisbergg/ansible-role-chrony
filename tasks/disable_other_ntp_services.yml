@@ -1,37 +1,27 @@
 ---
 - name: collect facts about system services
   ansible.builtin.service_facts:
-  register: services_state
 
-- when: __ntpd_service_name ~ '.service' in ansible_facts.services
-  block:
-    - name: stop ntpd service
-      ansible.builtin.service:
-        name: "{{ __ntpd_service_name }}"
-        enabled: false
-        state: stopped
-
-    - name: remove ntpd package
-      ansible.builtin.package:
-        name: "{{ __ntpd_package_name }}"
-        state: absent
-
-- when: __openntpd_service_name ~ '.service' in ansible_facts.services
-  block:
-    - name: stop openntpd service
-      ansible.builtin.service:
-        name: "{{ __openntpd_service_name }}"
-        enabled: false
-        state: stopped
-
-    - name: remove openntpd package
-      ansible.builtin.package:
-        name: "{{ __openntpd_package_name }}"
-        state: absent
-
-- name: stop timesyncd service
+- name: disable ntpd service
   ansible.builtin.service:
-    name: systemd-timesyncd
+    name: "{{ __ntpd_service_name }}"
     enabled: false
     state: stopped
-  when: __timesyncd_service_name ~ '.service' in ansible_facts.services
+  when: ansible_facts.services[__ntpd_service_name ~ '.service'].status | default('not-found')
+        in ['started', 'enabled']
+
+- name: disable openntpd service
+  ansible.builtin.service:
+    name: "{{ __openntpd_service_name }}"
+    enabled: false
+    state: stopped
+  when: ansible_facts.services[__openntpd_service_name ~ '.service'].status | default('not-found')
+        in ['started', 'enabled']
+
+- name: disable timesyncd service
+  ansible.builtin.service:
+    name: "{{ __timesyncd_service_name }}"
+    enabled: false
+    state: stopped
+  when: ansible_facts.services[__timesyncd_service_name ~ '.service'].status | default('not-found')
+        in ['started', 'enabled']

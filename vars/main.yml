@@ -5,9 +5,5 @@ __chrony_config_keyfile: /etc/chrony.keys
 __chrony_config_driftfile: /var/lib/chrony/drift
 
 __ntpd_service_name: ntpd
-__ntpd_package_name: ntp
-
 __openntpd_service_name: openntpd
-__openntpd_package_name: openntpd
-
 __timesyncd_service_name: systemd-timesyncd
