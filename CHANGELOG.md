@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
+- [2.1.0 (2022-01-03)](#210-2022-01-03)
 - [2.0.1 (2021-10-11)](#201-2021-10-11)
 - [2.0.0 (2021-10-11)](#200-2021-10-11)
 - [1.2.2 (2020-09-11)](#122-2020-09-11)
@@ -11,6 +12,29 @@ All notable changes to this project will be documented in this file.
 - [1.0.0 (2020-02-13)](#100-2020-02-13)
 
 ---
+
+<a name="2.1.0"></a>
+## [2.1.0](https://github.com/aisbergg/ansible-role-chrony/compare/v2.0.1...v2.1.0) (2022-01-03)
+
+### CI Configuration
+
+- add a GitHub workflow for publishing the role on Ansible Galaxy
+
+### Chores
+
+- update changelog template
+- **.ansible-lint:** update linter config
+- **requirements.yml:** add role requirements
+
+### Features
+
+- rename option to `chrony_disable_other_ntp_services`
+
+### ⚠ BREAKING CHANGES
+
+
+The role will no longer uninstall other NTP packages, it will only stop their services. The related option was renamed to accommodate the change.
+
 
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/aisbergg/ansible-role-chrony/compare/v2.0.0...v2.0.1) (2021-10-11)
@@ -89,4 +113,4 @@ All notable changes to this project will be documented in this file.
 <a name="1.0.0"></a>
 ## [1.0.0]() (2020-02-13)
 
-- Initial Release
+Initial Release
